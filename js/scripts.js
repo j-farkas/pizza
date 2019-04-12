@@ -92,6 +92,7 @@ function attachPizzaListeners() {
       console.log(roll);
       $('.dicepics').html("<img src=img/"+roll[0]+".png><img src=img/"+roll[1]+".png>");
       console.log(bank);
+      var point;
       if(bank.firstRoll === true){
         if(roll[0]+roll[1] === 7 ||roll[0]+roll[1] === 11 ){
           if(bank.pass === 'pass'){
@@ -118,7 +119,11 @@ function attachPizzaListeners() {
             $(".bet").show()
             bank.pass = false;
           }
+        }else{
+          point = roll[0]+roll[1];
+          $('.point').html("<h3>Point: "+point+"</h3>")
         }
+        bank.firstRoll = false;
       }
     }else{
       console.log("Must bet first!");
