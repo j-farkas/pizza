@@ -35,4 +35,4 @@ _HTML, CSS, Bootstrap, Javascript and Jquery were used_
 
 *This software is licensed under the MIT license*
 
-Copyright (c) 2016 **_Jared Farkas_**
+Copyright (c) 2019 **_Jared Farkas_**

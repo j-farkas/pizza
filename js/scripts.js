@@ -144,7 +144,6 @@ function attachPizzaListeners() {
             loser();
           }
         }
-
       }
     }
   });
