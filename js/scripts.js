@@ -79,6 +79,8 @@ function winner(){
   $(".bet2").hide();
   bank.come = false;
   bank.pass = false;
+  $('.point').hide();
+  $('.dicepics').append("<h1>Winner!</h2>");
 }
 
 function loser(){
@@ -86,6 +88,8 @@ function loser(){
   $(".bet2").hide();
   bank.come = false;
   bank.pass = false;
+  $('.point').hide();
+  $('.dicepics').append("<h1>Loser!</h1>");
 }
 function displayBank(){
   $('.cash').html(bank.money.toFixed(2));
@@ -110,15 +114,9 @@ function attachPizzaListeners() {
       if(bank.firstRoll === true){
         if(roll[0]+roll[1] === 7 ||roll[0]+roll[1] === 11 ){
           if(bank.come === 'come'){
-            console.log("Winner");
-            bank.money += 20;
-            displayBank();
-            $(".bet").show()
-            bank.pass = false;
+            winner();
           }else{
-            console.log("Loser");
-            $(".bet").show()
-            bank.pass = false;
+            loser();
           }
         }else if(roll[0]+roll[1] === 2 ||roll[0]+roll[1] === 12 ||roll[0]+roll[1] === 3 ){
           if(bank.come === 'dontcome'){
@@ -128,7 +126,8 @@ function attachPizzaListeners() {
           }
         }else{
           bank.point = roll[0]+roll[1];
-          $('.point').html("<h3>Point: "+bank.point+"</h3>")
+          $('.point').show();
+          $('.point').html("<h3>Point: "+bank.point+"</h3>");
           $('.bet2').show();
         }
         bank.firstRoll = false;
@@ -137,6 +136,12 @@ function attachPizzaListeners() {
 
         if((roll[0]+roll[1])===bank.point){
           if(bank.come === "come"){
+            winner();
+          }else{
+            loser();
+          }
+        }else if(roll[0]+roll[1]===7 || roll[0]+roll[1]===11){
+          if(bank.come === "dontcome"){
             winner();
           }else{
             loser();
