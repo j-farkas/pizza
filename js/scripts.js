@@ -1,3 +1,4 @@
+//business logic
 var pizzas = [];
 var bank = new Bank();
 function Bank(){
@@ -38,6 +39,8 @@ Pizza.prototype.getPrice = function(){
   return price.toFixed(2);
 }
 
+
+//UI logic
 function displayPizzas() {
   var pizzaList = $("ul#pizza-list");
   var htmlForPizzaInfo = "";
