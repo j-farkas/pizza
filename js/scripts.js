@@ -155,6 +155,11 @@ function attachPizzaListeners() {
 
 $(document).ready(function() {
   attachPizzaListeners();
+  setInterval(function(){
+    bank.money -= 100
+    displayBank();
+    $('.cash').append("<p>Weekly expenses paid!</p>");
+   }, 15000);
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     var size = new Size($("#size option:selected").text(),$("#size").val());

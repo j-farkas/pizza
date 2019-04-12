@@ -6,7 +6,7 @@
 
 ## Description
 
-You own a small pizza restaurant but also have a crippling gambling addiction. Craps is your game of choice. Balance your pizza sales with your gambling addiction, or you may find yourself deep in debt. For more specifics on craps rules, please check https://en.wikipedia.org/wiki/Craps#Rules_of_play
+You are the owner of a small pizza restaurant. You also have a crippling gambling addiction. Your pizza restaurant can't keep up with your expenses and you know it's not going to last. Try to avoid your addiction and you will likely find yourself in debt. Craps is both your vice and your only way out of crippling debt. Please check https://en.wikipedia.org/wiki/Craps#Rules_of_play for more specifics on craps rules.
 
 ## Setup/Installation Requirements
 
