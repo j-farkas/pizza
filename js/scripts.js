@@ -80,6 +80,7 @@ function winner(){
   bank.pass = false;
   $('.point').hide();
   $('.dicepics').append("<h1>Winner!</h2>");
+  $('.dice').hide();
 }
 
 function loser(){
@@ -88,6 +89,7 @@ function loser(){
   bank.pass = false;
   $('.point').hide();
   $('.dicepics').append("<h1>Loser!</h1>");
+  $('.dice').hide();
 }
 function displayBank(){
   $('.cash').html(bank.money.toFixed(2));
@@ -106,9 +108,7 @@ function attachPizzaListeners() {
   $(".craps").on("click", ".dice", function() {
     if(bank.come !== false){
       var roll = rollDice();
-      console.log(roll);
       $('.dicepics').html("<img src=img/"+roll[0]+".png><img src=img/"+roll[1]+".png>");
-      console.log(bank);
       if(bank.firstRoll === true){
         if(roll[0]+roll[1] === 7 ||roll[0]+roll[1] === 11 ){
           if(bank.come === 'come'){
@@ -146,8 +146,6 @@ function attachPizzaListeners() {
         }
 
       }
-    }else{
-      console.log("Must bet first!");
     }
   });
   $(".bet").on("click", "button", function() {
@@ -157,6 +155,7 @@ function attachPizzaListeners() {
     displayBank();
     $(".bet").hide();
     $(".dicepics").empty();
+    $('.dice').show();
   });
 
 };

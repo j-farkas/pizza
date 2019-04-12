@@ -6,7 +6,7 @@
 
 ## Description
 
-_You own a small pizza restaurant but also have a crippling gambling addiction. Craps is your game of choice. Balance your pizza sales with your gambling addiction, or you may find yourself deep in debt. For more specifics on craps rules, please check https://en.wikipedia.org/wiki/Craps#Rules_of_play_
+You own a small pizza restaurant but also have a crippling gambling addiction. Craps is your game of choice. Balance your pizza sales with your gambling addiction, or you may find yourself deep in debt. For more specifics on craps rules, please check https://en.wikipedia.org/wiki/Craps#Rules_of_play
 
 ## Setup/Installation Requirements
 
