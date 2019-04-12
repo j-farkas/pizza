@@ -3,7 +3,6 @@ var bank = new Bank();
 function Bank(){
   this.money = 0,
   this.come = false,
-  this.pass = false,
   this.firstRoll = false
 }
 
@@ -77,7 +76,6 @@ function winner(){
   displayBank();
   $(".bet").show()
   bank.come = false;
-  bank.pass = false;
   $('.point').hide();
   $('.dicepics').append("<h1>Winner!</h2>");
   $('.dice').hide();
@@ -86,7 +84,6 @@ function winner(){
 function loser(){
   $(".bet").show()
   bank.come = false;
-  bank.pass = false;
   $('.point').hide();
   $('.dicepics').append("<h1>Loser!</h1>");
   $('.dice').hide();
