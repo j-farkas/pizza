@@ -155,11 +155,19 @@ function attachPizzaListeners() {
 
 $(document).ready(function() {
   attachPizzaListeners();
+  var bad = 0;
   setInterval(function(){
     bank.money -= 100
     displayBank();
     $('.cash').append("<p>Weekly expenses paid!</p>");
-   }, 15000);
+    if(bank.money < -1000){
+      bad++;
+    }
+    if(bad<=8){
+      $('body').addClass('bad'+bad)
+      $('body').removeClass('bad'+(bad-1))
+    }
+  }, 15000);
   $("form#new-pizza").submit(function(event) {
     event.preventDefault();
     var size = new Size($("#size option:selected").text(),$("#size").val());

@@ -22,3 +22,31 @@ img{
 .dice{
   display:none;
 }
+
+.bad7{
+background-color:#222222;
+}
+
+.bad6{
+  background-color:#444444;
+}
+
+.bad5{
+  background-color:#666666;
+}
+
+.bad4{
+  background-color:#888888;
+}
+
+.bad3{
+  background-color:#aaaaaa;
+}
+
+.bad2{
+  background-color:#cccccc;
+}
+
+.bad1{
+  background-color:#eeeeee;
+}
