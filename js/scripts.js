@@ -3,7 +3,8 @@ var bank = new Bank();
 function Bank(){
   this.money = 0,
   this.come = false,
-  this.firstRoll = false
+  this.firstRoll = false,
+  this.expenses = 100
 }
 
 function Pizza(size, toppings) {
@@ -72,7 +73,7 @@ function rollDice(){
 }
 
 function winner(){
-  bank.money += 20;
+  bank.money += 200;
   displayBank();
   $(".bet").show()
   bank.come = false;
@@ -145,7 +146,7 @@ function attachPizzaListeners() {
   $(".bet").on("click", "button", function() {
     bank.come = $(this).attr('id');
     bank.firstRoll = true;
-    bank.money -= 10;
+    bank.money -= 100;
     displayBank();
     $(".bet").hide();
     $(".dicepics").empty();
@@ -157,7 +158,7 @@ $(document).ready(function() {
   attachPizzaListeners();
   var bad = 0;
   setInterval(function(){
-    bank.money -= 100
+    bank.money -= bank.expenses;
     displayBank();
     $('.cash').append("<p>Weekly expenses paid!</p>");
     if(bank.money < -1000){
