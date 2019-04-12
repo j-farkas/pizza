@@ -72,6 +72,21 @@ function rollDice(){
   return rolls;
 }
 
+function winner(){
+  bank.money += 20;
+  displayBank();
+  $(".bet").show()
+  $(".bet2").hide();
+  bank.come = false;
+  bank.pass = false;
+}
+
+function loser(){
+  $(".bet").show()
+  $(".bet2").hide();
+  bank.come = false;
+  bank.pass = false;
+}
 function displayBank(){
   $('.cash').html(bank.money.toFixed(2));
 }
@@ -107,17 +122,9 @@ function attachPizzaListeners() {
           }
         }else if(roll[0]+roll[1] === 2 ||roll[0]+roll[1] === 12 ||roll[0]+roll[1] === 3 ){
           if(bank.come === 'dontcome'){
-            console.log("Winner");
-            bank.money += 20;
-            displayBank();
-            $(".bet").show()
-            bank.come = false;
-            bank.pass = false;
+            winner();
           }else{
-            console.log("Loser");
-            $(".bet").show()
-            bank.come = false;
-            bank.pass = false;
+            loser();
           }
         }else{
           bank.point = roll[0]+roll[1];
@@ -130,13 +137,9 @@ function attachPizzaListeners() {
 
         if((roll[0]+roll[1])===bank.point){
           if(bank.come === "come"){
-            console.log("Winner");
-            bank.money += 20;
-            displayBank();
-            $(".bet").show()
-            $(".bet2").hide()
-            bank.come = false;
-            bank.pass = false;
+            winner();
+          }else{
+            loser();
           }
         }
 
