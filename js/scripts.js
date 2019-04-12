@@ -76,7 +76,6 @@ function winner(){
   bank.money += 20;
   displayBank();
   $(".bet").show()
-  $(".bet2").hide();
   bank.come = false;
   bank.pass = false;
   $('.point').hide();
@@ -85,7 +84,6 @@ function winner(){
 
 function loser(){
   $(".bet").show()
-  $(".bet2").hide();
   bank.come = false;
   bank.pass = false;
   $('.point').hide();
@@ -128,7 +126,6 @@ function attachPizzaListeners() {
           bank.point = roll[0]+roll[1];
           $('.point').show();
           $('.point').html("<h3>Point: "+bank.point+"</h3>");
-          $('.bet2').show();
         }
         bank.firstRoll = false;
 
@@ -159,12 +156,7 @@ function attachPizzaListeners() {
     bank.money -= 10;
     displayBank();
     $(".bet").hide();
-  });
-  $(".bet2").on("click", "button", function() {
-    bank.come = $(this).attr('id');
-    bank.firstRoll = true;
-    bank.money -= 10;
-    displayBank();
+    $(".dicepics").empty();
   });
 
 };
