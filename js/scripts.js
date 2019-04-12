@@ -1,7 +1,9 @@
 var pizzas = [];
 var bank = new Bank();
 function Bank(){
-  this.money = 0;
+  this.money = 0,
+  this.pass = false,
+  this.firstRoll = false
 }
 
 function Pizza(size, toppings) {
@@ -69,22 +71,67 @@ function rollDice(){
   return rolls;
 }
 
+
+function displayBank(){
+  $('.cash').html(bank.money.toFixed(2));
+}
 function attachPizzaListeners() {
   $("ul#pizza-list").on("click", "li", function() {
     showPizza(this.id);
   });
   $("#buttons").on("click", ".removePizza", function() {
     bank.money += parseFloat(pizzas[this.id].getPrice());
-    $('.cash').html(bank.money.toFixed(2));
+    displayBank();
     removePizza(this.id);
     $("#pizza-details").hide();
     displayPizzas();
   });
   $(".craps").on("click", ".dice", function() {
-    var roll = rollDice();
-    console.log(roll);
-    $('.dicepics').html("<img src=img/"+roll[0]+".png><img src=img/"+roll[1]+".png>");
+    if(bank.pass !== false){
+      var roll = rollDice();
+      console.log(roll);
+      $('.dicepics').html("<img src=img/"+roll[0]+".png><img src=img/"+roll[1]+".png>");
+      console.log(bank);
+      if(bank.firstRoll === true){
+        if(roll[0]+roll[1] === 7 ||roll[0]+roll[1] === 11 ){
+          if(bank.pass === 'pass'){
+            console.log("Winner");
+            bank.money += 20;
+            displayBank();
+            $(".bet").show()
+            bank.pass = false;
+          }else{
+            console.log("Loser");
+            $(".bet").show()
+            bank.pass = false;
+          }
+        }
+        if(roll[0]+roll[1] === 2 ||roll[0]+roll[1] === 12 ||roll[0]+roll[1] === 3 ){
+          if(bank.pass === 'dont'){
+            console.log("Winner");
+            bank.money += 20;
+            displayBank();
+            $(".bet").show()
+            bank.pass = false;
+          }else{
+            console.log("Loser");
+            $(".bet").show()
+            bank.pass = false;
+          }
+        }
+      }
+    }else{
+      console.log("Must bet first!");
+    }
   });
+  $(".bet").on("click", "button", function() {
+    bank.pass = $(this).attr('id');
+    bank.firstRoll = true;
+    bank.money -= 10;
+    displayBank();
+    $(".bet").hide();
+  });
+
 };
 
 $(document).ready(function() {
@@ -100,6 +147,5 @@ $(document).ready(function() {
     pizzas.push(new Pizza(size, tops));
     $(".default").prop("checked", true);
     displayPizzas();
-    console.log(pizzas);
   })
 })
