@@ -2,6 +2,7 @@ var pizzas = [];
 var bank = new Bank();
 function Bank(){
   this.money = 0,
+  this.come = false,
   this.pass = false,
   this.firstRoll = false
 }
@@ -71,7 +72,6 @@ function rollDice(){
   return rolls;
 }
 
-
 function displayBank(){
   $('.cash').html(bank.money.toFixed(2));
 }
@@ -87,15 +87,14 @@ function attachPizzaListeners() {
     displayPizzas();
   });
   $(".craps").on("click", ".dice", function() {
-    if(bank.pass !== false){
+    if(bank.come !== false){
       var roll = rollDice();
       console.log(roll);
       $('.dicepics').html("<img src=img/"+roll[0]+".png><img src=img/"+roll[1]+".png>");
       console.log(bank);
-      var point;
       if(bank.firstRoll === true){
         if(roll[0]+roll[1] === 7 ||roll[0]+roll[1] === 11 ){
-          if(bank.pass === 'pass'){
+          if(bank.come === 'come'){
             console.log("Winner");
             bank.money += 20;
             displayBank();
@@ -106,35 +105,58 @@ function attachPizzaListeners() {
             $(".bet").show()
             bank.pass = false;
           }
-        }
-        if(roll[0]+roll[1] === 2 ||roll[0]+roll[1] === 12 ||roll[0]+roll[1] === 3 ){
-          if(bank.pass === 'dont'){
+        }else if(roll[0]+roll[1] === 2 ||roll[0]+roll[1] === 12 ||roll[0]+roll[1] === 3 ){
+          if(bank.come === 'dontcome'){
             console.log("Winner");
             bank.money += 20;
             displayBank();
             $(".bet").show()
+            bank.come = false;
             bank.pass = false;
           }else{
             console.log("Loser");
             $(".bet").show()
+            bank.come = false;
             bank.pass = false;
           }
         }else{
-          point = roll[0]+roll[1];
-          $('.point').html("<h3>Point: "+point+"</h3>")
+          bank.point = roll[0]+roll[1];
+          $('.point').html("<h3>Point: "+bank.point+"</h3>")
+          $('.bet2').show();
         }
         bank.firstRoll = false;
+
+      }else{
+
+        if((roll[0]+roll[1])===bank.point){
+          if(bank.come === "come"){
+            console.log("Winner");
+            bank.money += 20;
+            displayBank();
+            $(".bet").show()
+            $(".bet2").hide()
+            bank.come = false;
+            bank.pass = false;
+          }
+        }
+
       }
     }else{
       console.log("Must bet first!");
     }
   });
   $(".bet").on("click", "button", function() {
-    bank.pass = $(this).attr('id');
+    bank.come = $(this).attr('id');
     bank.firstRoll = true;
     bank.money -= 10;
     displayBank();
     $(".bet").hide();
+  });
+  $(".bet2").on("click", "button", function() {
+    bank.come = $(this).attr('id');
+    bank.firstRoll = true;
+    bank.money -= 10;
+    displayBank();
   });
 
 };
