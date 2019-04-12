@@ -23,8 +23,8 @@ _None known_
 * _Add is clicked / input: n/a / output: A pizza containing the selected toppings and size is added to the pizza list_
 * _A pizza in the list is clicked on / input: n/a / output: More details are shown about the clicked on pizza_
 * _Pizza Delivered is clicked on / input: n/a / output: The pizza's cost is added to your bank, and the pizza is removed from the list_
-* _Pass is clicked / input: n/a / A pass bet is placed for $10, and the user is allowed to roll the dice_
-* _Don't pass is clicked / input: n/a / A don't pass bet is placed for $10, and the user is allowed to roll the dice_
+* _Pass is clicked / input: n/a / A pass bet is placed for $100, and the user is allowed to roll the dice_
+* _Don't pass is clicked / input: n/a / A don't pass bet is placed for $100, and the user is allowed to roll the dice_
 * _Roll is clicked / input: n/a / The user rolls two dice, and payout is dealt according to the placed bet_
 
 ## Technologies Used
