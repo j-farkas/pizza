@@ -1,3 +1,11 @@
 .hidden{
   display:none;
 }
+
+#pizza-details{
+  display:none;
+}
+
+#size{
+  width: 150px;
+}

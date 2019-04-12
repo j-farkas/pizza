@@ -5,55 +5,59 @@
     <link href="css/styles.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/scripts.js"></script>
-    <title>Address Book</title>
+    <title>Pizzas</title>
     <title></title>
   </head>
   <body>
     <div class="container">
-      <h1>Address Book</h1>
-      <div class="row">
-        <div class="col-md-6">
+      <div class="well">
+        <div class="row">
+          <div class="col-md-2 green">
+            <h1>Pizza!</h1>
+          </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <hr>
+            <h2>Add a Pizza:</h2>
+            <form id="new-pizza">
+              <select class="form-control" id="size">
+                <option value="10">Small</option>
+                <option value="12">Medium</option>
+                <option value="14">Large</option>
+                <option value="14">Extra Large</option>
+              </select>
+                <input type="checkbox" name="add-toppings" class="0 default" value="Cheese" checked><span class="green">Cheese</span><br>
+                <input type="checkbox" name="add-toppings" class="40" value="Pepperoni"><span class="white">Pepperoni</span><br>
+                <input type="checkbox" name="add-toppings" class="30" value="Onions"><span class="red">Onions</span><br>
+                <input type="checkbox" name="add-toppings" class="30" value="Tomatoes"><span class="green">Tomatoes</span><br>
+                <input type="checkbox" name="add-toppings" class="100" value="Anchovies"><span class="white">Anchovies</span><br>
+                <input type="checkbox" name="add-toppings" class="30" value="Olives">Olives<br>
+                <input type="checkbox" name="add-toppings" class="10" value="Basil">Basil<br>
+                <input type="checkbox" name="add-toppings" class="10" value="Garlic">Garlic<br>
+                <input type="checkbox" name="add-toppings" class="100" value="Ham">Ham<br>
+                <input type="checkbox" name="add-toppings" class="30" value="Peppers">Peppers<br>
+                <input type="checkbox" name="add-toppings" class="30" value="Spinach">Spinach<br>
+                <input type="checkbox" name="add-toppings" class="100" value="Chicken">Chicken<br>
+              <button type="submit" class="btn-primary">Add</button>
+            </form>
           <hr>
-          <h2>Add a Contact:</h2>
-          <form id="new-contact">
-            <div class="form-group">
-              <label for="new-first-name">First Name</label>
-              <input type="text"  class="form-control" id="new-first-name">
-            </div>
-            <div class="form-group">
-              <label for="new-last-name">Last Name</label>
-              <input type="text"  class="form-control" id="new-last-name">
-            </div>
-            <div class="form-group">
-              <label for="new-phone-number">Phone Number</label>
-              <input type="text"  class="form-control" id="new-phone-number">
-            </div>
-            <button type="submit" class="btn-primary">Add</button>
-          </form>
-          <hr>
-          <h2>Contacts:</h2>
-          <ul id="contacts">
+          <h2>Pizzas pending:</h2>
+          <ul id="pizza-list">
           </ul>
+          <p>Money Earned: $<span class='cash'></span>0</p>
         </div>
         <div class="col-md-6">
-          <div id="show-contact">
-            <p>First Name: <span class="first-name"></span></p>
-            <p>Last Name: <span class="last-name"></span></p>
-            <p>Phone Number: <span class="phone-number"></span></p>
-            <div id="ad">
-            </div>
-            <!-- <p>Address <span class="address"></span></p> -->
-            <!-- <p>Type of Address: <span class="type"></span></p> -->
+          <div id="pizza-details">
+            <p>Size <span class="size"></span></p>
+            <p>Toppings: <span class="toppings"></span></p>
+            <p>Price: $<span class="price"></span></p>
             <div id="buttons">
-            </div>
-            <div id="addressfields" class="hidden">
-              <label for="addressAdd">Address</label>
-              <input type='text' class='form-control' id='addressAdd'>
-              <label for="typeAdd">Type of Address</label>
-              <input type='text' class='form-control' id='typeAdd'>
             </div>
             </form>
           </div>
+
         </div>
       </div>
     </div>

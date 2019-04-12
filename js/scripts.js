@@ -1,126 +1,95 @@
-// Business Logic for AddressBook ---------
-function AddressBook() {
-  this.contacts = [],
-  this.currentId = 0
+var pizzas = [];
+var bank = new Bank();
+function Bank(){
+  this.money = 0;
 }
 
-AddressBook.prototype.addContact = function(contact) {
-  contact.id = this.assignId();
-  this.contacts.push(contact);
+function Pizza(size, toppings) {
+  this.size = size;
+  this.addToppings(toppings);
 }
 
-AddressBook.prototype.assignId = function() {
-  this.currentId += 1;
-  return this.currentId;
+function Size(name, price) {
+  this.name = name;
+  this.price = price;
 }
 
-AddressBook.prototype.findContact = function(id) {
-  for (var i=0; i< this.contacts.length; i++) {
-    if (this.contacts[i]) {
-      if (this.contacts[i].id == id) {
-        return this.contacts[i];
-      }
-    }
+Pizza.prototype.addToppings = function(toppings) {
+  var toPizza = [];
+  toppings.forEach(function(top){
+    toPizza.push(top);
+  })
+  this.toppings = toPizza;
+}
+
+function Toppings(name, price){
+  this.name = name;
+  this.price = price;
+}
+
+Pizza.prototype.getPrice = function(){
+  price = parseInt(this.size.price);
+  this.toppings.forEach(function(top){
+    price += (parseInt(top.price)/100);
+  })
+  return price.toFixed(2);
+}
+
+function displayPizzas() {
+  var pizzaList = $("ul#pizza-list");
+  var htmlForPizzaInfo = "";
+  for(var i=0;i<pizzas.length;i++){
+    htmlForPizzaInfo += "<li id=" + i + ">" + pizzas[i].size.name + " " + pizzas[i].toppings.length + " topping pizza</li>";
   };
-  return false;
-}
-
-AddressBook.prototype.deleteContact = function(id) {
-  for (var i=0; i< this.contacts.length; i++) {
-    if (this.contacts[i]) {
-      if (this.contacts[i].id == id) {
-        delete this.contacts[i];
-        return true;
-      }
-    }
-  };
-  return false;
-}
-
-// Business Logic for Contacts ---------
-function Contact(firstName, lastName, phoneNumber) {
-  this.firstName = firstName,
-  this.lastName = lastName,
-  this.phoneNumber = phoneNumber,
-  this.address =  []
-}
-
-function Address(address, type){
-  this.address = address,
-  this.type = type
-}
-Contact.prototype.fullName = function() {
-  return this.firstName + " " + this.lastName;
-}
-
-Contact.prototype.addAddress = function(ad, type) {
-  this.address.push(new Address(ad, type));
-}
-
-// User Interface Logic ---------
-var addressBook = new AddressBook();
-
-function displayContactDetails(addressBookToDisplay) {
-  var contactsList = $("ul#contacts");
-  var htmlForContactInfo = "";
-  addressBookToDisplay.contacts.forEach(function(contact) {
-    htmlForContactInfo += "<li id=" + contact.id + ">" + contact.firstName + " " + contact.lastName + "</li>";
-  });
-  contactsList.html(htmlForContactInfo);
+  pizzaList.html(htmlForPizzaInfo);
 };
 
-function showContact(contactId) {
-  var contact = addressBook.findContact(contactId);
-  $("#show-contact").show();
-  $(".first-name").html(contact.firstName);
-  $(".last-name").html(contact.lastName);
-  $(".phone-number").html(contact.phoneNumber);
-  contact.address.forEach(function(address){
-    $("#ad").append("<p>" + address.type + ": " + address.address + "</p");
-  });
-  var buttons = $("#buttons");
-  buttons.empty();
-  buttons.append("<button class='deleteButton' id=" +  + contact.id + ">Delete</button>");
-  buttons.append("<button class='addAddressButton' id=" +  + contact.id + ">Add Address</button>");
+function showPizza(ind) {
+  $("#pizza-details").show();
+  $(".size").html(pizzas[ind].size.name);
+  var topString = "";
+  pizzas[ind].toppings.forEach(function(top){
+    topString += top.name + ", ";
+  })
+  topString=topString.slice(0,toString.length-2);
+  $(".toppings").html(topString);
+  $(".price").html(pizzas[ind].getPrice());
+  $("#buttons").empty();
+  $("#buttons").append("<button class='removePizza' id=" + ind + ">Pizza Delivered</button>");
 }
 
-function attachContactListeners() {
-  $("ul#contacts").on("click", "li", function() {
-    showContact(this.id);
+function removePizza(ind){
+  pizzas.splice(ind,1);
+}
+
+
+
+function attachPizzaListeners() {
+  $("ul#pizza-list").on("click", "li", function() {
+    showPizza(this.id);
   });
-  $("#buttons").on("click", ".deleteButton", function() {
-    addressBook.deleteContact(this.id);
-    $("#show-contact").hide();
-    displayContactDetails(addressBook);
-  });
-  $("#buttons").off().on("click", ".addAddressButton", function() {
-    if($(".hidden").length < 1){
-      $(".showing").attr('class', 'hidden');
-    contact = addressBook.findContact(this.id);
-    contact.addAddress($("input#addressAdd").val(), $("input#typeAdd").val())
-    displayContactDetails(addressBook);
-    $("input#addressAdd").val("");
-    $("input#typeAdd").val("");
-    console.log(contact);
-    showContact(this.id);
-    }else{
-      $(".hidden").attr('class', 'showing');
-    }
+  $("#buttons").on("click", ".removePizza", function() {
+    bank.money += parseFloat(pizzas[this.id].getPrice());
+    $('.cash').html(bank.money);
+    removePizza(this.id);
+    $("#pizza-details").hide();
+    displayPizzas();
   });
 };
 
 $(document).ready(function() {
-  attachContactListeners();
-  $("form#new-contact").submit(function(event) {
+  attachPizzaListeners();
+  $("form#new-pizza").submit(function(event) {
     event.preventDefault();
-    var inputtedFirstName = $("input#new-first-name").val();
-    var inputtedLastName = $("input#new-last-name").val();
-    var inputtedPhoneNumber = $("input#new-phone-number").val();
-    $("input#new-first-name").val("");
-    $("input#new-last-name").val("");
-    $("input#new-phone-number").val("");
-    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber);
-    addressBook.addContact(newContact);
-    displayContactDetails(addressBook);
+    var size = new Size($("#size option:selected").text(),$("#size").val());
+    var tops = [];
+    $("input:checkbox[name=add-toppings]:checked").each(function(){
+       tops.push(new Toppings(this.value,$(this).attr('class')));
+    });
+    $("input:checkbox[name=add-toppings]:checked").prop('checked', false);
+    pizzas.push(new Pizza(size, tops));
+    $(".default").prop("checked", true);
+    displayPizzas();
+    console.log(pizzas);
   })
 })
