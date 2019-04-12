@@ -128,9 +128,7 @@ function attachPizzaListeners() {
           $('.point').html("<h3>Point: "+bank.point+"</h3>");
         }
         bank.firstRoll = false;
-
       }else{
-
         if((roll[0]+roll[1])===bank.point){
           if(bank.come === "come"){
             winner();
@@ -156,7 +154,6 @@ function attachPizzaListeners() {
     $(".dicepics").empty();
     $('.dice').show();
   });
-
 };
 
 $(document).ready(function() {
