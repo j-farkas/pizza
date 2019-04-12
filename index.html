@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <title>Address Book</title>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Address Book</h1>
+      <div class="row">
+        <div class="col-md-6">
+          <hr>
+          <h2>Add a Contact:</h2>
+          <form id="new-contact">
+            <div class="form-group">
+              <label for="new-first-name">First Name</label>
+              <input type="text"  class="form-control" id="new-first-name">
+            </div>
+            <div class="form-group">
+              <label for="new-last-name">Last Name</label>
+              <input type="text"  class="form-control" id="new-last-name">
+            </div>
+            <div class="form-group">
+              <label for="new-phone-number">Phone Number</label>
+              <input type="text"  class="form-control" id="new-phone-number">
+            </div>
+            <button type="submit" class="btn-primary">Add</button>
+          </form>
+          <hr>
+          <h2>Contacts:</h2>
+          <ul id="contacts">
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <div id="show-contact">
+            <p>First Name: <span class="first-name"></span></p>
+            <p>Last Name: <span class="last-name"></span></p>
+            <p>Phone Number: <span class="phone-number"></span></p>
+            <div id="ad">
+            </div>
+            <!-- <p>Address <span class="address"></span></p> -->
+            <!-- <p>Type of Address: <span class="type"></span></p> -->
+            <div id="buttons">
+            </div>
+            <div id="addressfields" class="hidden">
+              <label for="addressAdd">Address</label>
+              <input type='text' class='form-control' id='addressAdd'>
+              <label for="typeAdd">Type of Address</label>
+              <input type='text' class='form-control' id='typeAdd'>
+            </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
