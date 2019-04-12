@@ -62,7 +62,12 @@ function removePizza(ind){
   pizzas.splice(ind,1);
 }
 
-
+function rollDice(){
+  var rolls = [];
+   rolls.push(Math.floor((Math.random())*6)+1);
+   rolls.push(Math.floor((Math.random())*6)+1);
+  return rolls;
+}
 
 function attachPizzaListeners() {
   $("ul#pizza-list").on("click", "li", function() {
@@ -70,10 +75,15 @@ function attachPizzaListeners() {
   });
   $("#buttons").on("click", ".removePizza", function() {
     bank.money += parseFloat(pizzas[this.id].getPrice());
-    $('.cash').html(bank.money);
+    $('.cash').html(bank.money.toFixed(2));
     removePizza(this.id);
     $("#pizza-details").hide();
     displayPizzas();
+  });
+  $(".craps").on("click", ".dice", function() {
+    var roll = rollDice();
+    console.log(roll);
+    $('.dicepics').html("<img src=img/"+roll[0]+".png><img src=img/"+roll[1]+".png>");
   });
 };
 
